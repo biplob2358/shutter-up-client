@@ -8,29 +8,32 @@ import img4 from "../../../assets/Slider/4.jpg";
 const Slider = () => {
   return (
     <div className="mb-4 mt-4  ">
-      <div className="carousel w-full h-3/4  ">
+      <div className="carousel w-full rounded-md  ">
         <div
           id="item1"
           className="carousel-item w-full grid justify-items-center items-center"
         >
-          <img src={img1} className="w-full " />
+          <img src={img2} className="w-full " alt="" />
           <div className="absolute text-center">
             <p className="text-6xl font-bold text-base-200  underline">
               Capture <br /> Your Moment
             </p>
             <button className="btn text-bold bg-orange-600 mt-4">
-              Explore More <FaArrowRight></FaArrowRight>
+              Explore More{" "}
+              <span className="ml-2">
+                <FaArrowRight></FaArrowRight>
+              </span>
             </button>
           </div>
         </div>
         <div id="item2" className="carousel-item w-full ">
-          <img src={img2} className="w-full" />
+          <img src={img1} className="w-full" alt="img1" />
         </div>
         <div id="item3" className="carousel-item w-full">
-          <img src={img3} className="w-full " />
+          <img src={img3} className="w-full " alt="" />
         </div>
         <div id="item4" className="carousel-item w-full">
-          <img src={img4} className="w-full" />
+          <img src={img4} className="w-full" alt="" />
         </div>
       </div>
       <div className="flex justify-center w-full py-2 gap-2">
