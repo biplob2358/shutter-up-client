@@ -7,7 +7,9 @@ const Services = () => {
 
   return (
     <div>
-      <h2>This is all services</h2>
+      <h2 className="text-5xl font-semibold mb-4 text-center underline">
+        All services
+      </h2>
       <div className="grid lg:grid-cols-3 md:grid-cols-2">
         {services.map((service) => (
           <ServiceCart key={service._id} service={service}></ServiceCart>
