@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import login from "../../assets/images/login.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
@@ -15,11 +16,15 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
+        toast.success("Login sucessfull");
         console.log(user);
         form.reset();
         navigate("/");
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        toast.error(`${error}`);
+        console.error(error);
+      });
   };
   return (
     <div className="hero    mx-auto my-4 ">
