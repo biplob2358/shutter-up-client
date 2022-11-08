@@ -2,6 +2,7 @@ import React from "react";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import AboutMe from "../../AboutMe/AboutMe";
+import LatestWork from "../../AboutMe/LatestWork/LatestWork";
 import HomeServices from "../../Services/HomeServices";
 
 import Slider from "../Slider/Slider";
@@ -20,6 +21,7 @@ const Home = () => {
         </Link>
       </div>
       <AboutMe></AboutMe>
+      <LatestWork></LatestWork>
     </div>
   );
 };
