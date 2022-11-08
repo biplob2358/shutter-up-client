@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import register from "../../assets/images/register.png";
+import GoogleGitLogin from "../Shared/GoogleGitLogin/GoogleGitLogin";
 
 const Register = () => {
   return (
@@ -41,7 +42,7 @@ const Register = () => {
                 <span className="label-text">Email</span>
               </label>
               <input
-                type="text"
+                type="email"
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
@@ -74,6 +75,10 @@ const Register = () => {
               Login
             </Link>{" "}
           </p>
+          <p className="text-center font-bold mt-4">OR</p>
+          <div className="text-center">
+            <GoogleGitLogin></GoogleGitLogin>
+          </div>
         </div>
       </div>
     </div>
