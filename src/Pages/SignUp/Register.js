@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import register from "../../assets/images/register.png";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import GoogleGitLogin from "../Shared/GoogleGitLogin/GoogleGitLogin";
 
 const Register = () => {
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    // console.log(name, photoURL, email, password);
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        handleUpdateUser(name, photoURL);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  const handleUpdateUser = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="hero w-full my-20">
       <div className="hero-content  gap-20 md:grid-cols-2 flex-col lg:flex-row">
@@ -12,7 +42,7 @@ const Register = () => {
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20">
           <h1 className="text-5xl text-center font-bold">Sign Up</h1>
-          <form className="card-body">
+          <form onSubmit={handleSubmit} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
@@ -31,7 +61,7 @@ const Register = () => {
               </label>
               <input
                 type="text"
-                name="name"
+                name="photoURL"
                 placeholder="Photo URL"
                 className="input input-bordered"
                 required

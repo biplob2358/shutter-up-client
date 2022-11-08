@@ -5,7 +5,14 @@ import logo from "../../../assets/logo.jpg";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .than(() => {})
+      .catch((error) => console.error(console.error()));
+  };
+
   const manuItems = (
     <>
       <li>
@@ -29,12 +36,12 @@ const Header = () => {
             <Link to="">{user?.displayName}</Link>
           </li>
 
-          <NavLink>
-            {user.photoURL ? (
+          <NavLink className="mx-2">
+            {user?.photoURL ? (
               <img
                 style={{ height: "40px" }}
-                className="rounded-full border border-gray-100 shadow-sm"
-                src={user.photoURL}
+                className="rounded-full mx-4 border border-gray-100 shadow-sm"
+                src={user?.photoURL}
                 alt=""
               />
             ) : (
@@ -42,7 +49,7 @@ const Header = () => {
             )}
           </NavLink>
           <li>
-            <Link to="/login">Logout</Link>
+            <Link onClick={handleLogOut}>Logout</Link>
           </li>
         </>
       ) : (

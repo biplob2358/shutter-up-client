@@ -1,9 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import login from "../../assets/images/login.png";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import GoogleGitLogin from "../Shared/GoogleGitLogin/GoogleGitLogin";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        navigate("/");
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="hero    mx-auto my-4 ">
       <div className="hero-content  gap-20 flex justify-center   md:grid-cols-2 flex-col lg:flex-row">
@@ -12,7 +29,7 @@ const Login = () => {
         </div>
         <div className="card w-100  flex-shrink-0   max-w-sm shadow-2xl bg-base-100 py-20">
           <h1 className="text-5xl text-center font-bold">Login</h1>
-          <form className="card-body">
+          <form onSubmit={handleSubmit} className="card-body">
             <div className="form-control ">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -22,6 +39,7 @@ const Login = () => {
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
@@ -33,6 +51,7 @@ const Login = () => {
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control mt-6">
