@@ -1,8 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { FaUserAlt } from "react-icons/fa";
 import logo from "../../../assets/logo.jpg";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   const manuItems = (
     <>
       <li>
@@ -14,12 +17,44 @@ const Header = () => {
       <li>
         <Link to="/blogs">Blogs</Link>
       </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
-      <li>
-        <Link to="/register">Register</Link>
-      </li>
+      {user?.uid ? (
+        <>
+          <li>
+            <Link to="">My Reviews</Link>
+          </li>
+          <li>
+            <Link to="">My Service</Link>
+          </li>
+          <li>
+            <Link to="">{user?.displayName}</Link>
+          </li>
+
+          <NavLink>
+            {user.photoURL ? (
+              <img
+                style={{ height: "40px" }}
+                className="rounded-full border border-gray-100 shadow-sm"
+                src={user.photoURL}
+                alt=""
+              />
+            ) : (
+              <FaUserAlt></FaUserAlt>
+            )}
+          </NavLink>
+          <li>
+            <Link to="/login">Logout</Link>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/register">Register</Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (

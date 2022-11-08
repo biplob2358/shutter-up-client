@@ -5,15 +5,15 @@ import GoogleGitLogin from "../Shared/GoogleGitLogin/GoogleGitLogin";
 
 const Login = () => {
   return (
-    <div className="hero   mx-auto my-20 ">
-      <div className="hero-content  w-full gap-20 flex justify-center   md:grid-cols-2 flex-col lg:flex-row">
+    <div className="hero    mx-auto my-4 ">
+      <div className="hero-content  gap-20 flex justify-center   md:grid-cols-2 flex-col lg:flex-row">
         <div className="text-center  lg:text-left">
           <img className="w-3/4" src={login} alt="" />
         </div>
-        <div className="card flex-shrink-0   max-w-sm shadow-2xl bg-base-100 py-20">
+        <div className="card w-100  flex-shrink-0   max-w-sm shadow-2xl bg-base-100 py-20">
           <h1 className="text-5xl text-center font-bold">Login</h1>
           <form className="card-body">
-            <div className="form-control">
+            <div className="form-control ">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
