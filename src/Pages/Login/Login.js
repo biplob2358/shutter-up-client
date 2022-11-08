@@ -40,8 +40,8 @@ const Login = () => {
           </form>
           <p className="text-center">
             New to Shutter Up{" "}
-            <Link className="text-orange-600 font-bold" to="/signup">
-              Sign Up
+            <Link className="text-orange-600 font-bold" to="/register">
+              Register
             </Link>{" "}
           </p>
           <p className="text-center font-bold mt-4">OR</p>
