@@ -3,9 +3,12 @@ import Main from "../../Layout/Main";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
+
 import Services from "../../Pages/Services/Services";
 import ServicesDetails from "../../Pages/ServicesDetails/ServicesDetails";
 import Register from "../../Pages/SignUp/Register";
+import AddServices from "../../Pages/AddServices/AddServices";
+import MyReview from "../../Pages/MyReview/MyReview";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/addservices",
+        element: <AddServices></AddServices>,
+      },
+      {
+        path: "/myreviews",
+        element: <MyReview></MyReview>,
       },
     ],
   },

@@ -1,6 +1,7 @@
 import React from "react";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import AboutMe from "../../AboutMe/AboutMe";
 import HomeServices from "../../Services/HomeServices";
 
 import Slider from "../Slider/Slider";
@@ -18,6 +19,7 @@ const Home = () => {
           </button>
         </Link>
       </div>
+      <AboutMe></AboutMe>
     </div>
   );
 };

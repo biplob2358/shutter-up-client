@@ -27,10 +27,10 @@ const Header = () => {
       {user?.uid ? (
         <>
           <li>
-            <Link to="">My Reviews</Link>
+            <Link to="/myreviews">My Reviews</Link>
           </li>
           <li>
-            <Link to="">My Service</Link>
+            <Link to="/addservices">Add Service</Link>
           </li>
           <li>
             <Link to="">{user?.displayName}</Link>
