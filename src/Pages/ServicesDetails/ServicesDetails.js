@@ -1,15 +1,66 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import SingleReview from "../../SingleReview/SingleReview";
 
 const ServicesDetails = () => {
   const { user } = useContext(AuthContext);
   const serviceDetails = useLoaderData();
-  const { name, price, rating, img, description } = serviceDetails;
+  const { _id, name, price, rating, img, description } = serviceDetails;
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/reviews?service_id=${_id}`)
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  }, [_id]);
+
+  const handleReview = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const rating = form.rating.value;
+    const review = form.review.value;
+    const serviceName = name;
+    const userName = user?.displayName || "Unregister";
+    const email = user?.email || "Unregister";
+    const userPhotoUrl = user?.photoURL;
+
+    const date = new Date();
+
+    const reviews = {
+      service_id: _id,
+      serviceName,
+      userName,
+      email,
+      rating,
+      review,
+      date,
+      userPhotoUrl,
+    };
+    // console.log(reviews);
+    fetch("http://localhost:5000/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reviews),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          toast.success("Your review sumbit successfully");
+          form.reset();
+        }
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="mx-20">
-      <div className="card w-2/3 mx-auto bg-base-100 shadow-xl my-4 ">
+      <div className="card  mx-auto bg-base-100 shadow-xl my-4 ">
         <figure>
           <img src={img} alt="" />
         </figure>
@@ -29,23 +80,39 @@ const ServicesDetails = () => {
           <button className="btn bg-orange-500 w-28  mx-auto">BOOK NOW</button>
         </div>
       </div>
+      <h2 className="text-center text-4xl text-sky-600 underline mt-4 mb-4">
+        {" "}
+        Reviews
+      </h2>
+      <div className="grid lg:grid-cols-2 md:grid-cols-2 text-center border   ">
+        <div className="border w-3/4 mb-4">
+          <p>Total reviews:{reviews.length}</p>
 
-      <h2 className="text-center text-4xl text-sky-600 underline"> Reviews</h2>
-      <div className="grid grid-cols-2 text-center border">
-        <dv className="border">
-          <p>All reviews</p>
-          <p>All reviews</p>
-          <p>All reviews</p>
-          <p>All reviews</p>
-          <p>All reviews</p>
-          <p>All reviews</p>
-          <p>All reviews</p>
-          <p>All reviews</p>
-        </dv>
-        <dv>
+          <div className="overflow-x-auto w-full">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Rating</th>
+                  <th>Review</th>
+                </tr>
+              </thead>
+              <tbody>
+                {reviews.map((review) => (
+                  <SingleReview
+                    key={review._id}
+                    review={review}
+                    handleReview={handleReview}
+                  ></SingleReview>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="w-3/4 ">
           {user?.uid ? (
             <div>
-              <form className="card-body ">
+              <form onSubmit={handleReview} className="card-body ">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Service Name</span>
@@ -75,11 +142,11 @@ const ServicesDetails = () => {
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Description</span>
+                    <span className="label-text">Review</span>
                   </label>
                   <textarea
                     className="textarea textarea-primary"
-                    name="description"
+                    name="review"
                     placeholder="Description"
                     required
                   ></textarea>
@@ -103,7 +170,7 @@ const ServicesDetails = () => {
               </div>
             </div>
           )}
-        </dv>
+        </div>
       </div>
     </div>
   );

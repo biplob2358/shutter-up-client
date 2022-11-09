@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../../assets/images/login.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import GoogleGitLogin from "../Shared/GoogleGitLogin/GoogleGitLogin";
@@ -8,6 +8,10 @@ import GoogleGitLogin from "../Shared/GoogleGitLogin/GoogleGitLogin";
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -19,7 +23,7 @@ const Login = () => {
         toast.success("Login sucessfull");
         console.log(user);
         form.reset();
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(`${error}`);
