@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { GoogleAuthProvider } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const GoogleGitLogin = () => {
   const { googleLogin } = useContext(AuthContext);
@@ -12,8 +13,11 @@ const GoogleGitLogin = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        toast.success("Login Sucessfull");
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        toast.error(`${error}`);
+      });
   };
   return (
     <div>

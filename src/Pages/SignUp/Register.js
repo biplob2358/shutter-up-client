@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import register from "../../assets/images/register.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
@@ -18,11 +19,12 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        toast.success("Registration Successfull ");
         form.reset();
         handleUpdateUser(name, photoURL);
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(`${error}`);
       });
   };
   const handleUpdateUser = (name, photoURL) => {

@@ -34,7 +34,7 @@ const AddServices = () => {
       .catch((error) => console.error(error));
   };
   return (
-    <div className="container mx-auto w-1/2 bg-sky-100 mt-10 rounded-lg">
+    <div className="container mx-auto w-1/2 bg-sky-100 mt-10 rounded-lg shadow-xl">
       <form onSubmit={handleServicesAdd} className="card-body">
         <div className="form-control">
           <label className="label">
@@ -55,7 +55,7 @@ const AddServices = () => {
           <input
             type="number"
             name="price"
-            placeholder="Photo URL"
+            placeholder="Price"
             className="input input-bordered"
             required
           />

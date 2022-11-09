@@ -23,7 +23,6 @@ const Login = () => {
       })
       .catch((error) => {
         toast.error(`${error}`);
-        console.error(error);
       });
   };
   return (

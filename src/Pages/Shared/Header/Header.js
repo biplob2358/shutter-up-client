@@ -3,13 +3,16 @@ import { Link, NavLink } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import logo from "../../../assets/logo.jpg";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut()
-      .than(() => {})
+      .then(() => {
+        toast.success("LogOut Sucessfull");
+      })
       .catch((error) => console.error(console.error()));
   };
 
