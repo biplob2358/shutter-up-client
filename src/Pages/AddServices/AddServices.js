@@ -20,7 +20,7 @@ const AddServices = () => {
       img,
       description,
     };
-    fetch("http://localhost:5000/services", {
+    fetch("https://shutter-up-server-mu.vercel.app/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",

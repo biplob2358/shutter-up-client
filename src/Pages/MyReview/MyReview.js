@@ -10,11 +10,14 @@ const MyReview = () => {
   useTitle("My Reviews");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user.email}`, {
-      headers: {
-        authorization: `Brarer ${localStorage.getItem("shutterUp-Token")}`,
-      },
-    })
+    fetch(
+      `https://shutter-up-server-mu.vercel.app/reviews?email=${user.email}`,
+      {
+        headers: {
+          authorization: `Brarer ${localStorage.getItem("shutterUp-Token")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setMyReviews(data));
   }, [user?.email]);
@@ -22,7 +25,7 @@ const MyReview = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are You sure,Want delete you review?");
     if (proceed) {
-      fetch(`http://localhost:5000/reviews/${id}`, {
+      fetch(`https://shutter-up-server-mu.vercel.app/reviews/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

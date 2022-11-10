@@ -34,7 +34,9 @@ const router = createBrowserRouter([
         path: "/services/:id",
         element: <ServicesDetails></ServicesDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://shutter-up-server-mu.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/blogs",
@@ -72,7 +74,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/reviews/${params.id}`),
+          fetch(`https://shutter-up-server-mu.vercel.app/reviews/${params.id}`),
       },
     ],
   },

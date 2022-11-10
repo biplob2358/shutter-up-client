@@ -10,13 +10,16 @@ const UpdateReview = () => {
     event.preventDefault();
 
     console.log(reviews);
-    fetch(`http://localhost:5000/reviews/${updateReview._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(reviews),
-    })
+    fetch(
+      `https://shutter-up-server-mu.vercel.app/reviews/${updateReview._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(reviews),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

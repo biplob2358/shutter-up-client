@@ -28,7 +28,7 @@ const Register = () => {
         const currentUser = {
           email: user.email,
         };
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://shutter-up-server-mu.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",

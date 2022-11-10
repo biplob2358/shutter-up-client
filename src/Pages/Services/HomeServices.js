@@ -7,7 +7,7 @@ const HomeServices = () => {
   const [size, setSize] = useState(3);
 
   useEffect(() => {
-    const url = `http://localhost:5000/services?size=${size}`;
+    const url = `https://shutter-up-server-mu.vercel.app/services?size=${size}`;
 
     fetch(url)
       .then((res) => res.json())

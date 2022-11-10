@@ -12,7 +12,9 @@ const ServicesDetails = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/serviceReviews?service_id=${_id}`)
+    fetch(
+      `https://shutter-up-server-mu.vercel.app/serviceReviews?service_id=${_id}`
+    )
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [_id]);
@@ -40,7 +42,7 @@ const ServicesDetails = () => {
       userPhotoUrl,
     };
     // console.log(reviews);
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://shutter-up-server-mu.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",
