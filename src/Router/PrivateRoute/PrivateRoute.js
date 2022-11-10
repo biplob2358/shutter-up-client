@@ -6,7 +6,11 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="grid min-h-screen content-center">
+        <div className="w-16 h-16 mx-auto border-4  border-dashed rounded-full animate-spin dark:border-red-400"></div>
+      </div>
+    );
   }
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace></Navigate>;

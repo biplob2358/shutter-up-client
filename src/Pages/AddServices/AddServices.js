@@ -1,6 +1,9 @@
 import React from "react";
+import toast from "react-hot-toast";
+import useTitle from "../../hooks/useTitle";
 
 const AddServices = () => {
+  useTitle("Add Services");
   const handleServicesAdd = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -29,9 +32,10 @@ const AddServices = () => {
         console.log(data);
         if (data.acknowledged) {
           form.reset();
+          toast.success("New Service Added Successfully");
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => toast.error(`${error}`));
   };
   return (
     <div className="container mx-auto w-1/2 bg-sky-100 mt-10 rounded-lg shadow-xl">
@@ -67,7 +71,7 @@ const AddServices = () => {
           <input
             type="text"
             name="rating"
-            placeholder="Photo URL"
+            placeholder="Rating(1-5)"
             className="input input-bordered"
             required
           />

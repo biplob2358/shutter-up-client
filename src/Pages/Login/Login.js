@@ -1,34 +1,49 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../../assets/images/login.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import GoogleGitLogin from "../Shared/GoogleGitLogin/GoogleGitLogin";
+import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  useTitle("Login");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    setLoading(true);
     signIn(email, password)
       .then((result) => {
         const user = result.user;
+
         toast.success("Login sucessfull");
         console.log(user);
         form.reset();
+        setLoading(false);
         navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(`${error}`);
+        setLoading(false);
       });
   };
+
+  if (loading) {
+    return (
+      <div className="grid min-h-screen content-center">
+        <div className="w-16 h-16 mx-auto border-4  border-dashed rounded-full animate-spin dark:border-red-400"></div>
+      </div>
+    );
+  }
   return (
     <div className="hero    mx-auto my-4 ">
       <div className="hero-content  gap-20 flex justify-center   md:grid-cols-2 flex-col lg:flex-row">

@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const MyReviewDetails = ({ myReview }) => {
-  const { serviceName, rating, review } = myReview;
+const MyReviewDetails = ({ myReview, handleDelete }) => {
+  const { _id, serviceName, rating, review } = myReview;
+
   return (
     <div className="">
       <div className="card w-96 bg-base-100 shadow-xl mx-auto">
@@ -14,8 +16,15 @@ const MyReviewDetails = ({ myReview }) => {
             <span className="font-bold">Rating:</span> {rating}
           </p>
           <div className="card-actions justify-between mt-4 ">
-            <button className="btn btn-primary">Edit</button>
-            <button className="btn bg-red-600">Delete</button>
+            <Link to={`/update/${_id}`}>
+              <button className="btn btn-primary">Edit</button>
+            </Link>
+            <button
+              onClick={() => handleDelete(_id)}
+              className="btn bg-red-600"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>

@@ -59,7 +59,7 @@ const ServicesDetails = () => {
   };
 
   return (
-    <div className="mx-20">
+    <div className=" mx-auto ml-8">
       <div className="card  mx-auto bg-base-100 shadow-xl my-4 ">
         <figure>
           <img src={img} alt="" />
@@ -84,7 +84,7 @@ const ServicesDetails = () => {
         {" "}
         Reviews
       </h2>
-      <div className="grid lg:grid-cols-2 md:grid-cols-2 text-center border   ">
+      <div className="grid lg:grid-cols-2 md:grid-cols-2 text-center border  mx-auto ">
         <div className="border w-3/4 mb-4">
           <p>Total reviews:{reviews.length}</p>
 
@@ -110,6 +110,7 @@ const ServicesDetails = () => {
           </div>
         </div>
         <div className="w-3/4 ">
+          <h1 className="font-bold">Write Your Review</h1>
           {user?.uid ? (
             <div>
               <form onSubmit={handleReview} className="card-body ">
@@ -162,10 +163,12 @@ const ServicesDetails = () => {
               </form>
             </div>
           ) : (
-            <div className="flex h-full justify-center items-center">
+            <div className="flex h-full  justify-center items-center">
               <div>
                 <Link to="/login">
-                  <button className="btn bg-orange-600">Please Login</button>
+                  <button className="btn my-6 bg-orange-600">
+                    Please Login
+                  </button>
                 </Link>
               </div>
             </div>

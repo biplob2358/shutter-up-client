@@ -1,12 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import register from "../../assets/images/register.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import GoogleGitLogin from "../Shared/GoogleGitLogin/GoogleGitLogin";
+import useTitle from "../../hooks/useTitle";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  useTitle("Register");
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -14,7 +21,7 @@ const Register = () => {
     const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(name, photoURL, email, password);
+    setLoading(true);
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -22,9 +29,13 @@ const Register = () => {
         toast.success("Registration Successfull ");
         form.reset();
         handleUpdateUser(name, photoURL);
+        form.reset();
+        setLoading(false);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(`${error}`);
+        setLoading(false);
       });
   };
   const handleUpdateUser = (name, photoURL) => {
@@ -36,6 +47,13 @@ const Register = () => {
       .then(() => {})
       .catch((error) => console.error(error));
   };
+  if (loading) {
+    return (
+      <div className="grid min-h-screen content-center">
+        <div className="w-16 h-16 mx-auto border-4  border-dashed rounded-full animate-spin dark:border-red-400"></div>
+      </div>
+    );
+  }
   return (
     <div className="hero w-full my-20">
       <div className="hero-content  gap-20 md:grid-cols-2 flex-col lg:flex-row">

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import logo from "../../../assets/logo.jpg";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
@@ -36,7 +36,7 @@ const Header = () => {
             <Link to="/addservices">Add Service</Link>
           </li>
           <li>
-            <Link to="">{user?.displayName}</Link>
+            <Link>{user?.displayName}</Link>
           </li>
 
           <NavLink className="mx-2">
@@ -48,7 +48,7 @@ const Header = () => {
                 alt=""
               />
             ) : (
-              <FaUserAlt></FaUserAlt>
+              <FaUser></FaUser>
             )}
           </NavLink>
           <li>
@@ -68,7 +68,7 @@ const Header = () => {
     </>
   );
   return (
-    <div className="navbar bg-sky-400  ">
+    <div className="navbar w-full bg-sky-400  ">
       <div className="navbar-start ">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -100,7 +100,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="navbar-end hidden lg:flex">
-        <ul className="menu menu-horizontal font-bold p-0">{manuItems}</ul>
+        <ul className="menu menu-horizontal  font-bold p-0">{manuItems}</ul>
       </div>
     </div>
   );
