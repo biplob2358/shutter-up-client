@@ -11,12 +11,17 @@ import AddServices from "../../Pages/AddServices/AddServices";
 import MyReview from "../../Pages/MyReview/MyReview";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import UpdateReview from "../../Pages/MyReview/UpdateReview";
+import NotFound from "../../Pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
     children: [
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
+      },
       {
         path: "/",
         element: <Home></Home>,
