@@ -3,23 +3,43 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const GoogleGitLogin = () => {
   const { googleLogin } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = () => {
     setLoading(true);
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
+
         console.log(user);
         toast.success("Login Sucessfull");
+        const currentUser = {
+          email: user.email,
+        };
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("shutterUp-Token", data.token);
+            navigate(from, { replace: true });
+          });
+
         setLoading(false);
-        navigate("/");
       })
       .catch((error) => {
         setLoading(false);

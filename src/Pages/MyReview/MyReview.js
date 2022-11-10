@@ -10,7 +10,11 @@ const MyReview = () => {
   useTitle("My Reviews");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user.email}`)
+    fetch(`http://localhost:5000/reviews?email=${user.email}`, {
+      headers: {
+        authorization: `Brarer ${localStorage.getItem("shutterUp-Token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setMyReviews(data));
   }, [user?.email]);
