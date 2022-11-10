@@ -16,6 +16,8 @@
 - ### **There are Blogs page**
 - ### **In Blogs there are 4 question which is also responsive**
 - ### **User can add service but must be login**
+- ### **Every user can see the review and User also can write his/her review**
+- ### **User can edit and delete  his/her own review**
 
 ## `List of technologies`
 
