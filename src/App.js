@@ -5,7 +5,7 @@ import router from "./Router/Routes/Routes";
 
 function App() {
   return (
-    <div>
+    <div className="mx-auto">
       <RouterProvider router={router}></RouterProvider>
       <Toaster position="top-center" reverseOrder={false} />
     </div>

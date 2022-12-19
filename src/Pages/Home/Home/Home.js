@@ -1,6 +1,7 @@
 import React from "react";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Contact from "../../../Contact/Contact";
 import useTitle from "../../../hooks/useTitle";
 
 import AboutMe from "../../AboutMe/AboutMe";
@@ -25,6 +26,7 @@ const Home = () => {
       </div>
       <AboutMe></AboutMe>
       <LatestWork></LatestWork>
+      <Contact></Contact>
     </div>
   );
 };

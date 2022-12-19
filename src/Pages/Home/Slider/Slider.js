@@ -7,15 +7,15 @@ import img4 from "../../../assets/Slider/4.jpg";
 
 const Slider = () => {
   return (
-    <div className="mb-4 mt-4  ">
-      <div className="carousel w-full rounded-md  ">
+    <div className="mb-4 mt-4 mx-8 ">
+      <div className="carousel  w-full rounded-md  ">
         <div
           id="item1"
           className="carousel-item w-full grid justify-items-center items-center"
         >
           <img src={img2} className="w-full " alt="" />
           <div className="absolute text-center">
-            <p className="text-6xl font-bold text-base-200  underline">
+            <p className="lg:text-6xl sm:text-xl font-bold text-base-200  underline">
               Capture <br /> Your Moment
             </p>
             <button className="btn text-bold bg-orange-600 mt-4">

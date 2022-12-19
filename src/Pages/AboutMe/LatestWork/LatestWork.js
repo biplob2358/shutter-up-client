@@ -9,7 +9,7 @@ import img6 from "../../../assets/work/6.jpeg";
 const LatestWork = () => {
   return (
     <div className="mt-10 mb-4">
-      <p className="text-4xl font-bold text-center underline text-sky-500 ">
+      <p className="lg:text-4xl text-xl font-bold text-center underline text-sky-500 ">
         THE LATEST WORK
       </p>
       <div>
@@ -21,8 +21,8 @@ const LatestWork = () => {
             <img src={img2} alt="" className="rounded-lg" />
           </div>
         </div>
-        <div className="flex justify-center bg-sky-100">
-          <img className="w-3/4 rounded-lg " src={img3} alt="" />
+        <div className="flex mx-auto justify-center w-3/4 bg-sky-100">
+          <img className="w-full rounded-lg " src={img3} alt="" />
         </div>
         <div className="hero w-3/4 mx-auto  flex justify-center gap-4 bg-sky-100">
           <div>

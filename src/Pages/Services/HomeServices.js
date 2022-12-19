@@ -20,9 +20,11 @@ const HomeServices = () => {
     <div>
       <div className="text-center ">
         <p className="text-2xl font-bold text-orange-600">Services</p>
-        <h2 className="text-5xl font-semibold mb-4">Current Packages</h2>
+        <h2 className="lg:text-5xl text-xl font-semibold mb-4">
+          Current Packages
+        </h2>
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 g-4 ">
+        <div className="grid gap-4 mx-4 lg:grid-cols-3 md:grid-cols-2 g-4 ">
           {services.map((service) => (
             <ServiceCart key={service._id} service={service}></ServiceCart>
           ))}
